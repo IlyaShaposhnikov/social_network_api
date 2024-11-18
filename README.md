@@ -1,43 +1,177 @@
-### Как запустить проект:
+# API для социальной сети YaTube
 
-Клонировать репозиторий и перейти в него в командной строке:
+## Описание
 
+**YaTube API** — это интерфейс для взаимодействия с социальной сетью YaTube через запросы. С помощью API можно публиковать посты, оставлять к ним комментарии, подписываться на авторов, работать с группами и подписками. Данный проект создан для упрощения интеграции сторонних приложений с платформой YaTube и автоматизации работы с её функционалом.
+
+Основные возможности API:
+- Просмотр и создание постов;
+- Комментирование постов;
+- Просмотр групп и подписка на авторов;
+- Управление подписками.
+
+API создан с использованием Django REST Framework (DRF) и поддерживает аутентификацию с помощью JWT-токенов.
+
+---
+
+## Установка
+
+### 1. Клонирование репозитория
+
+Склонируйте репозиторий и перейдите в директорию проекта:
+
+`git clone https://github.com/IlyaShaposhnikov/api_final_yatube.git`
+
+`cd api_final_yatube`
+### 2. Создание и активация виртуального окружения (для Windows)
+
+`py -3.9 -m venv venv`
+
+`source venv/Scripts/activate`
+### 3. Установка зависимостей
+Обновите менеджер пакетов pip и установите зависимости из файла requirements.txt:
+
+`python3 -m pip install --upgrade pip`
+
+`pip install -r requirements.txt`
+### 4. Выполнение миграций
+Примените миграции для настройки базы данных:
+
+`python manage.py migrate`
+### 5. Запуск сервера разработки
+Запустите сервер разработки:
+
+`python manage.py runserver`
+
+Теперь API доступен по адресу: <http://127.0.0.1:8000/>
+
+## Использование
+### Аутентификация
+Для работы с API необходима аутентификация через JWT-токены. Для получения токена используйте эндпоинт:
+
+`POST /api/v1/jwt/create/`
+
+Пример запроса:
+
+`POST http://127.0.0.1:8000/api/v1/jwt/create/`
 ```
-git clone https://github.com/IlyaShaposhnikov/api_final_yatube.git
+{
+    "username": "your_username",
+    "password": "your_password"
+}
+```
+Пример ответа:
+```
+{
+    "refresh": "token_refresh",
+    "access": "token_access"
+}
+```
+Используйте полученный токен access для авторизации в последующих запросах, добавляя его в заголовок:
+
+`Authorization: Bearer <access_token>`
+
+---
+
+## Основные эндпоинты
+### Посты
+- Получить список постов:
+
+`GET /api/v1/posts/`
+
+- Создать новый пост:
+
+`POST /api/v1/posts/`
+
+Тело запроса:
+```
+{
+    "text": "Текст нового поста",
+    "group": 1
+}
+```
+- Получить пост по ID:
+
+`GET /api/v1/posts/{id}/`
+
+- Обновить пост:
+
+`PUT /api/v1/posts/{id}/`
+
+- Удалить пост:
+
+`DELETE /api/v1/posts/{id}/`
+
+
+---
+
+### Комментарии
+- Получить список комментариев к посту:
+
+`GET /api/v1/posts/{post_id}/comments/`
+
+- Создать комментарий к посту:
+
+`POST /api/v1/posts/{post_id}/comments/`
+
+Тело запроса:
+```
+{
+    "text": "Текст комментария"
+}
+```
+- Получить комментарий по ID:
+
+`GET /api/v1/posts/{post_id}/comments/{id}/`
+
+- Обновить комментарий:
+
+`PUT /api/v1/posts/{post_id}/comments/{id}/`
+
+- Удалить комментарий:
+
+`DELETE /api/v1/posts/{post_id}/comments/{id}/`
+
+
+---
+
+### Подписки
+- Получить список подписок текущего пользователя:
+
+`GET /api/v1/follow/`
+
+- Подписаться на автора:
+
+`POST /api/v1/follow/`
+
+Тело запроса:
+```
+{
+    "following": "username"
+}
 ```
 
-```
-cd api_final_yatube
-```
+---
 
-Cоздать и активировать виртуальное окружение:
+### Группы
+- Получить список групп:
 
-```
-py -3.9 -m venv venv
-```
+`GET /api/v1/groups/`
 
-```
-source venv/Scripts/activate
-```
+- Получить информацию о группе по ID:
 
-Установить зависимости из файла requirements.txt:
+`GET /api/v1/groups/{id}/`
 
-```
-python3 -m pip install --upgrade pip
-```
+---
 
-```
-pip install -r requirements.txt
-```
+Технологии
+o	Python 3.9
+o	Django 3.2.16
+o	Django REST Framework 3.12.4
+o	Simple JWT 4.7.2
+o	SQLite
 
-Выполнить миграции:
+---
 
-```
-python manage.py migrate
-```
-
-Запустить проект:
-
-```
-python manage.py runserver
-```
+@IlyaShaposhnikov
+Яндекс Практикум. Python-разработчик. Когорта 45+.
