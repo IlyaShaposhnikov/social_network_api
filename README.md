@@ -165,11 +165,11 @@ API создан с использованием Django REST Framework (DRF) и 
 ---
 
 Технологии
-o	Python 3.9
-o	Django 3.2.16
-o	Django REST Framework 3.12.4
-o	Simple JWT 4.7.2
-o	SQLite
+- Python 3.9
+- Django 3.2.16
+- Django REST Framework 3.12.4
+- Simple JWT 4.7.2
+- SQLite
 
 ---
 
