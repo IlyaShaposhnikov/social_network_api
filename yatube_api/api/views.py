@@ -33,7 +33,6 @@ class CommentViewSet(viewsets.ModelViewSet):
             Comment.objects
             .filter(post_id=post_id)
             .select_related('author')
-            .all()
         )
 
     def perform_create(self, serializer):

@@ -40,7 +40,7 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
 
     def __str__(self):
-        return self.text[:20] + '...' if len(self.text) > 20 else self.text
+        return f'{self.text[:20]}...'
 
 
 class Comment(models.Model):
@@ -63,7 +63,10 @@ class Comment(models.Model):
         verbose_name_plural = 'Комментарии'
 
     def __str__(self):
-        return self.text[:20] + '...' if len(self.text) > 20 else self.text
+        return (
+            f'{self.author.username} - {self.post.text[:20]}... : '
+            f'{self.text[:20]}...'
+        )
 
 
 class Follow(models.Model):
