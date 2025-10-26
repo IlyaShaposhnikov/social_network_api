@@ -20,7 +20,7 @@ API создан с использованием Django REST Framework (DRF) и 
 
 Склонируйте репозиторий и перейдите в директорию проекта:
 
-`git clone https://github.com/IlyaShaposhnikov/api_final_yatube.git`
+`git clone https://github.com/IlyaShaposhnikov/social_network_api.git`
 
 `cd api_final_yatube`
 ### 2. Создание и активация виртуального окружения (для Windows)
