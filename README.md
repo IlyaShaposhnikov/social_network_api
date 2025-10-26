@@ -173,5 +173,5 @@ API создан с использованием Django REST Framework (DRF) и 
 
 ---
 
-@IlyaShaposhnikov
-
+Илья Шапошников
+ilia.a.shaposhnikov@gmail.com
